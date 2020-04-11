@@ -1,61 +1,52 @@
-// Javascript file for drawing purposes
-
 const dt = 10/1000;
 
 var data = [];
 var path = [];
-var canvas; 
-var context;
 
 var time = 0.0;
 
 
-window.onload = function() {
-    // draw stuff here
+function setup() {
+    createCanvas(800, 600);
 
-    canvas = document.getElementById("canvas");
-    context = canvas.getContext("2d");
-    context.translate(0.5, 0.5);
-    context.strokeStyle = "orange";
-
-    setInterval(draw, dt*1000);
-};
-
+}
 
 async function draw() {
-    // Clear canvas
-    context.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Clear path
-    context.beginPath();
+    background(0);
 
     let centerX = 200;
     let centerY = 200;
 
     for (var i = 0; i < data.length; i++) {
 
-        let real = data[i]["coefficient"]["real"];
-        let imag = data[i]["coefficient"]["imaginary"];
         let frequency = data[i]["frequency"];
+        let radius = data[i]["amplitude"];
+        let phase = data[i]["phase"];
 
-        let pos = await eel.calculate_position(real, imag, frequency, time)();
+        x = radius * cos(frequency * time + phase);
+        y = radius * sin(frequency * time + phase);
 
-        x = pos[0];
-        y = pos[1];
-
-        context.moveTo(centerX, centerY);
-        context.lineTo(centerX + x, centerY + y);
-        context.stroke();
+        stroke(255, 100);
+        noFill();
+        //ellipse(centerX, prevy, radius * 2);
+        stroke(255);
+        line(centerX, centerY, centerX + x, centerY + y);
 
         centerX += x;
         centerY += y;
     }
 
+    path.unshift(createVector(centerX, centerY));
+    beginShape();
+    noFill();
+    for (let i = 0; i < path.length; i++) {
+      vertex(path[i].x, path[i].y);
+    }
+    endShape();
+
     time += dt/10;
-
-    //if (time >= 1) time = 0;
-
 }
+
 
 eel.expose(draw_fourier_transform);             
         function draw_fourier_transform(dft) {
@@ -64,5 +55,3 @@ eel.expose(draw_fourier_transform);
             time = 0;
         }
         
-        
-
