@@ -11,10 +11,11 @@ def discrete_fourier_transform(data):
             complex_sum += data[n] * cmath.exp((-1j * 2 * cmath.pi / N) * k * n)
 
 
+        complex_sum = complex_sum / N  # adjust amplitude
         coefficients.append({
             "coefficient" : {
                 "real" : complex_sum.real,
-                "imaginary" : complex_sum.imag
+                "imaginary" : complex_sum.imag 
             },
             "amplitude" : abs(complex_sum),
             "phase" : cmath.phase(complex_sum),

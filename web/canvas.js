@@ -1,50 +1,57 @@
-const dt = 10/1000;
-
 var data = [];
 var path = [];
 
-var time = 0.0;
+var time = 0;
 
 
 function setup() {
-    createCanvas(800, 600);
-
+    createCanvas(850, 650);
 }
 
-async function draw() {
+function draw() {
     background(0);
 
-    let centerX = 200;
-    let centerY = 200;
+    if (data.length > 0) {
 
-    for (var i = 0; i < data.length; i++) {
+        let centerX = 400;
+        let centerY = 325;
 
-        let frequency = data[i]["frequency"];
-        let radius = data[i]["amplitude"];
-        let phase = data[i]["phase"];
+        for (var i = 0; i < data.length; i++) {
 
-        x = radius * cos(frequency * time + phase);
-        y = radius * sin(frequency * time + phase);
+            let frequency = data[i]["frequency"];
+            let radius = data[i]["amplitude"];
+            let phase = data[i]["phase"];
 
-        stroke(255, 100);
+            x = radius * cos(frequency * time + phase);
+            y = radius * sin(frequency * time + phase);
+
+            stroke(255, 100);
+            noFill();
+            ellipse(centerX, centerY, radius * 2);
+            stroke(255);
+            line(centerX, centerY, centerX + x, centerY - y);
+
+            centerX += x;
+            centerY -= y; // negative to compensate flipped coordinate system (compared to complex plane)
+        }
+
+        path.unshift(createVector(centerX, centerY));
+        beginShape();
         noFill();
-        //ellipse(centerX, prevy, radius * 2);
-        stroke(255);
-        line(centerX, centerY, centerX + x, centerY + y);
+        stroke(255, 204, 0);
+        for (let i = 0; i < path.length; i++) {
+        vertex(path[i].x, path[i].y);
+        }
+        endShape();
 
-        centerX += x;
-        centerY += y;
+        const dt = TWO_PI / data.length;  
+        time += dt;
+    
+        if (time > TWO_PI) {
+            time = 0;
+            path = [];
+        }
     }
-
-    path.unshift(createVector(centerX, centerY));
-    beginShape();
-    noFill();
-    for (let i = 0; i < path.length; i++) {
-      vertex(path[i].x, path[i].y);
-    }
-    endShape();
-
-    time += dt/10;
 }
 
 

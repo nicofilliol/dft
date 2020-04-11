@@ -20,5 +20,7 @@
   "bugs": {
     "url": "https://github.com/nicofilliol/eelectron/issues"
   },
-  "homepage": "https://github.com/nicofilliol/eelectron#readme"
+  "homepage": "https://github.com/nicofilliol/eelectron#readme",
+  "dependencies": {
+  }
 }
