@@ -1,60 +1,9 @@
-# Eelectron
+# Fourier
 
-This is a starter project that uses [Eel](https://github.com/ChrisKnott/Eel) and [Electron](https://electronjs.org/) in order to create a desktop application which uses HTML/CSS/JavaScript as frontend and Python as backend.
+This is a small project inspired by _The Coding Train_'s [Coding Challenge](https://www.youtube.com/watch?v=MY4luNgGfms) on the Discrete Fourier Transform. 
 
-## Getting Started
-
-These instructions will get you a copy of the starter project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-In order for the starter project to work properly, you need to install Eel and Electron on your local machine.
-
-Install Eel from pypi with `pip`:
-
-```
-pip install eel
-```
-
-In order to install Electron, first install `node.js` and `npm` using homebrew (alternatively use the installer from [here](https://nodejs.org/en/download/)):
-```
-brew install node
-```
-
-Next, we can install Electron globally using the following command:
-
-```
-npm install electron -g
-```
+The goal of this small project was to create an Electron app and use both Python and JavaScript for the implementation of the code. Even though it isn't necessary for a project like this to use so many different technologies, it was one of the aims to gain experience working with them and combine all technologies in order to create an app that uses Python as backend and web technologies as frontend.
 
 
-### Installing
-
-You can install this starter project simply by cloning the repository to your local machine:
-
-```
-git clone https://github.com/nicofilliol/eelectron.git
-```
-
-Check if everything works by running the following commands:
-
-```
-cd eelectron
-python main.py
-```
-
-If everything was installed properly, the starter app should open with Electron and a window saying `Hello, World!`. Furthermore, check the Python console to make sure that the communication between Python and JavaScript through Eel works properly. If the output is similar to the following, everything is alright:
-
-```
-Hello from Python World!
-Hello from JavaScript World!
-```
-
-## Where to go from here
-
-This repository serves as a starter project for Eelectron apps. Go ahead and start coding your GUI with HTML/CSS and JavaScript and use Python to compute things in the backend.
-
-## Built With
-
-* [Eel](https://github.com/ChrisKnott/Eel) - Module used for starting and communicating with Electron
-* [Electron](https://electronjs.org/) - Dependency Management
+#### Demo of a Simple Function
+![](DFT.gif)
