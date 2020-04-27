@@ -1,4 +1,4 @@
-# Fourier
+# Discrete Fourier Transform
 
 This is a small project inspired by _The Coding Train_'s [Coding Challenge](https://www.youtube.com/watch?v=MY4luNgGfms) on the Discrete Fourier Transform. 
 
